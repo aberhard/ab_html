@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - Modern Showcase</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Globale Navigation (identisch mit index.html, aber Features ist nun aktiv) -->
+    <header class="main-header">
+        <a href="#main-content" class="skip-link">Zum Inhalt springen</a>
+        <nav aria-label="Hauptnavigation">
+            <div class="logo">DevShowcase</div>
+            <ul class="nav-links">
+                <!-- Verlinkung zurück zur Startseite -->
+                <li><a href="index.html">Home</a></li>
+                <!-- Diese Seite ist jetzt aktiv markiert -->
+                <li><a href="features.html" class="active">Features</a></li>
+                <!-- <li><a href="#">Kontakt</a></li> -->
+                <li><a href="kontakt.html" class="active">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hauptbereich für die Features -->
+    <main id="main-content" class="features-main">
+        
+        <!-- Bereichs-Header mit einer Einlass-Animation (Klasse: animate-fade-in) -->
+        <header class="features-hero animate-fade-in">
+            <h1>Unsere Core Features</h1>
+            <p>Entdecke die Werkzeuge, die modernes Webdesign schnell und flexibel machen.</p>
+        </header>
+
+        <!-- Grid-Layout für die Feature-Karten mit einer gestaffelten Slide-In Animation -->
+        <section class="features-grid">
+            
+            <article class="feature-card animate-slide-up" style="--delay: 1;">
+                <div class="feature-icon">⚡</div>
+                <h3>High Performance</h3>
+                <p>Nativer CSS-Code ohne schwere Frameworks sorgt für blitzschnelle Ladezeiten auf allen Endgeräten.</p>
+            </article>
+
+            <article class="feature-card animate-slide-up" style="--delay: 2;">
+                <div class="feature-icon">🧩</div>
+                <h3>Modularer Aufbau</h3>
+                <p>Durch CSS Custom Properties (Variablen) lässt sich das gesamte Design mit nur einer Codezeile anpassen.</p>
+            </article>
+
+            <article class="feature-card animate-slide-up" style="--delay: 3;">
+                <div class="feature-icon">📱</div>
+                <h3>Fully Responsive</h3>
+                <p>Dank modernem CSS Grid passt sich das Layout fliessend an – vom kleinsten Smartphone bis zum 4K-Monitor.</p>
+            </article>
+
+            <article class="feature-card animate-slide-up" style="--delay: 4;">
+                <div class="feature-icon">♿</div>
+                <h3>Barrierefreiheit</h3>
+                <p>Integrierte semantische HTML5-Tags und Fokus-Steuerungen garantieren Zugänglichkeit für alle Menschen.</p>
+            </article>
+
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 DevShowcase. Erstellt mit modernen Standards.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!-- html: Legt die Sprache fest, wichtig für Screenreader und Suchmaschinen -->
+<html lang="de">
+<head>
+    <!-- charset: Definiert die Zeichenkodierung (Umlaute wie ä, ö, ü werden korrekt dargestellt) -->
+    <meta charset="UTF-8">
+    
+    <!-- viewport: Macht die Webseite responsiv (skaliert automatisch auf Smartphones) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- title: Der Text, der oben im Browser-Tab steht -->
+    <title>Modernes HTML5 & CSS Showcase</title>
+    
+    <!-- link: Verknüpft diese HTML-Datei mit der externen CSS-Style-Datei -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- header: Semantischer Tag für den Kopfbereich der Seite -->
+    <header class="main-header">
+        <!-- Skip-Link: Unsichtbarer Link für Tastatur-Nutzer, um die Navigation zu überspringen (Barrierefreiheit) -->
+        <a href="#main-content" class="skip-link">Zum Inhalt springen</a>
+        
+        <!-- nav: Kennzeichnet den Navigationsbereich; aria-label beschreibt den Zweck für Screenreader -->
+        <nav aria-label="Hauptnavigation">
+            <div class="logo">DevShowcase</div>
+            <!-- ul/li: Die sauberste Art, ein Navigationsmenü als Liste zu strukturieren -->
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <!-- <li><a href="#">Features</a></li> -->
+                 <li><a href="features.html" class="active">Features</a></li>
+                <!-- <li><a href="#">Kontakt</a></li> -->
+                <li><a href="kontakt.html" class="active">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- main: Kennzeichnet den einzigartigen Hauptinhalt der Seite (wichtig für SEO) -->
+    <main id="main-content" class="grid-container">
+        
+        <!-- section: Gruppiert thematisch zusammengehörige Inhalte -->
+        <section class="hero shadow-md">
+            <!-- h1: Die wichtigste Überschrift der Seite (darf nur einmal pro Seite vorkommen) -->
+            <h1>Modernes Webdesign mit <span class="highlight">HTML & CSS</span></h1>
+            <p>Ein kompakter Überblick über aktuelle Best Practices.</p>
+            <!-- button: Für interaktive Klicks; 'type="button"' verhindert ungewolltes Absenden von Formularen -->
+            <button type="button" class="btn btn-primary">Jetzt starten</button>
+        </section>
+
+        <section class="features">
+            <!-- h2: Unterüberschrift der zweiten Ebene -->
+            <h2>Core Features</h2>
+            <div class="flex-cards">
+                <!-- article: Für eigenständige Inhalte, die man theoretisch teilen oder kopieren könnte (z.B. Blogposts, Produktkarten) -->
+                <article class="card">
+                    <h3>Semantik</h3>
+                    <p>Nutze Tags wie article, section und nav.</p>
+                </article>
+                <article class="card">
+                    <h3>Modernes CSS</h3>
+                    <p>Variablen, Grid und mathematische Funktionen.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2>Feedback</h2>
+            <!-- form: Container für Dateneingaben; 'action' bestimmt das Ziel, 'method="POST"' sendet Daten sicher -->
+            <form action="#" method="POST" class="form-group">
+                <!-- label: Beschriftung für das Eingabefeld; verknüpft über das 'for'-Attribut mit der 'id' des Inputs -->
+                <label for="username">Name:</label>
+                <!-- input: Eingabefeld; 'required' macht es zum Pflichtfeld, 'placeholder' zeigt einen Hinweistext -->
+                <input type="text" id="username" name="username" placeholder="Dein Name" required>
+                
+                <label for="theme">Lieblings-Feature:</label>
+                <!-- select/option: Erstellt ein Dropdown-Auswahlmenü -->
+                <select id="theme" name="theme">
+                    <option value="grid">CSS Grid</option>
+                    <option value="variables">CSS Custom Properties</option>
+                </select>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter" name="newsletter">
+                    <label for="newsletter">Newsletter abonnieren</label>
+                </div>
+
+                <!-- type="submit": Schickt die eingebetteten Formulardaten ab -->
+                <button type="submit" class="btn btn-secondary">Absenden</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- footer: Semantischer Tag für den Fussbereich (Impressum, Copyright etc.) -->
+    <footer class="main-footer">
+        <p>&copy; 2026 DevShowcase. Erstellt mit modernen Standards.</p>
+    </footer>
+
+</body>
+</html>

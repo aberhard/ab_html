@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt - Modern Showcase</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Globale Navigation mit reinem CSS-Hamburger-Menü -->
+    <header class="main-header">
+        <a href="#main-content" class="skip-link">Zum Inhalt springen</a>
+        <nav aria-label="Hauptnavigation" class="nav-container">
+            <div class="logo">DevShowcase</div>
+            
+            <!-- SCHRITT 1: Die unsichtbare Checkbox, die den Zustand (offen/zu) speichert -->
+            <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+            
+            <!-- SCHRITT 2: Das sichtbare Hamburger-Icon (Label steuert die Checkbox) -->
+            <label for="menu-toggle" class="hamburger-button" aria-label="Menü öffnen/schliessen">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </label>
+            
+            <!-- SCHRITT 3: Die eigentliche Menü-Liste -->
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="kontakt.html" class="active">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hauptbereich der Kontaktseite -->
+    <main id="main-content" class="contact-main animate-fade-in">
+        <section class="contact-card">
+            <h1>Kontakt aufnehmen</h1>
+            <p>Schreib uns eine Nachricht oder besuche uns in unserem Büro.</p>
+            
+            <div class="contact-info">
+                <div class="info-item">
+                    <span>📍</span>
+                    <p>Musterstrasse 12, 8000 Zürich</p>
+                </div>
+                <div class="info-item">
+                    <span>✉️</span>
+                    <p>hello@devshowcase.ch</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 DevShowcase. Erstellt mit modernen Standards.</p>
+    </footer>
+
+</body>
+</html>
