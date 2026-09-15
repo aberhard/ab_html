@@ -1,0 +1,495 @@
+/* ==========================================================================
+   1. CSS CUSTOM PROPERTIES (VARIABLEN) & RESETS
+   ========================================================================== */
+
+/* :root: Globaler Selektor. Hier definierte Variablen gelten für das gesamte Dokument */
+:root {
+    /* CSS-Variablen starten immer mit '--'. Sie verhindern, dass man Farben ständig neu tippen muss */
+    --primary-color: #2563eb;
+    --secondary-color: #1e293b;
+    --text-color: #334155;
+    --bg-color: #f8fafc;
+    --white: #ffffff;
+    --gap-md: 1.5rem;
+    --radius-lg: 12px;
+    --transition-fast: all 0.3s ease; /* Definiert eine Standard-Animationszeit */
+}
+
+/* Modifizierter Box-Sizing Reset (* trifft alle Elemente, ::before/::after trifft alle Pseudo-Elemente) */
+*, *::before, *::after {
+    /* border-box: Verhindert, dass Padding und Ränder die gesetzte Breite/Höhe eines Elements vergrössern */
+    box-sizing: border-box;
+    /* Entfernt standardmässige Browser-Abstände */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* system-ui: Nutzt die superschnelle Standardschriftart des jeweiligen Betriebssystems */
+    font-family: system-ui, -apple-system, sans-serif;
+    /* line-height: Erhöht den Zeilenabstand für bessere Lesbarkeit */
+    line-height: 1.6;
+    /* var(): Ruft eine oben definierte CSS-Variable auf */
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    
+    /* Sticky Footer Trick: Zwingt den Footer an den unteren Rand, selbst bei wenig Text */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* 100vh = Volle Höhe des sichtbaren Bildschirms */
+}
+
+/* ==========================================================================
+   2. BARRIEREFREIHEIT (ACCESSIBILITY)
+   ========================================================================== */
+
+.skip-link {
+    /* position: absolute: Löst das Element aus dem normalen Textfluss */
+    position: absolute;
+    /* top: -40px: Verschiebt den Link unsichtbar nach oben aus dem Bildschirm heraus */
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 8px;
+    /* z-index: Sorgt dafür, dass der Link visuell über allen anderen Elementen liegt */
+    z-index: 100;
+    transition: top 0.2s;
+}
+
+/* :focus: Tritt in Kraft, wenn der Nutzer den Link mit der Tabulatortaste ansteuert */
+.skip-link:focus { 
+    /* Holt den Link zurück in den sichtbaren Bereich */
+    top: 0; 
+}
+
+/* ==========================================================================
+   3. FLEXBOX (EINDIMENSIONALES LAYOUT)
+   ========================================================================== */
+
+.main-header nav {
+    /* display: flex: Aktiviert die Flexbox-Steuerung für alle direkten Kindelemente */
+    display: flex;
+    /* justify-content: Verteilt die Elemente maximal (Logo links, Menü rechts) */
+    justify-content: space-between;
+    /* align-items: Zentriert die Elemente vertikal auf einer Linie */
+    align-items: center;
+    padding: 1rem 5%;
+    background: var(--white);
+    /* box-shadow: Erzeugt einen feinen, modernen Schattenwurf (X-Versatz, Y-Versatz, Unschärfe, Farbe) */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.nav-links {
+    display: flex;
+    /* list-style: none: Entfernt die typischen Aufzählungspunkte der HTML-Liste */
+    list-style: none;
+    /* gap: Moderner Befehl, um Abstände direkt zwischen Flex-Elementen zu steuern (ohne margin-right) */
+    gap: var(--gap-md);
+}
+
+.nav-links a {
+    /* text-decoration: none: Entfernt den standardmässigen Unterstrich von Links */
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.nav-links a.active {
+    color: var(--primary-color);
+}
+
+/* ==========================================================================
+   4. CSS GRID (ZWEIDIMENSIONALES LAYOUT)
+   ========================================================================== */
+
+.grid-container {
+    /* display: grid: Erstellt ein Raster aus Spalten und Zeilen */
+    display: grid;
+    /* repeat(auto-fit, minmax...): Das mächtigste moderne responsive Layout-Werkzeug. 
+       Baut automatisch so viele Spalten wie nebeneinander passen. Eine Spalte ist dabei 
+       mindestens 300px breit, nutzt aber bei Platzüberschuss den restlichen Raum gleichmässig (1fr) */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* calc(): Ermöglicht mathematische Berechnungen im CSS (hier: 1.5rem * 2 = 3rem) */
+    gap: calc(var(--gap-md) * 2);
+    padding: var(--gap-md) 5%;
+    /* flex-grow: 1: Teil des Sticky Footer Tricks. Dehnt den Hauptbereich aus, um den Footer nach unten zu drücken */
+    flex-grow: 1;
+}
+
+/* ==========================================================================
+   5. MODERNE STYLING-BEFEHLE & EFFEKTE
+   ========================================================================== */
+
+.hero {
+    /* grid-column: 1 / -1: Befiehlt dem Element, sich über die gesamte Breite des Grids (Spalte 1 bis Ende) zu strecken */
+    grid-column: 1 / -1; 
+    /* linear-gradient: Erzeugt einen modernen, fliessenden Farbverlauf im Winkel von 135 Grad */
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    padding: 3rem;
+    border-radius: var(--radius-lg);
+    text-align: center;
+}
+
+.highlight {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.flex-cards {
+    display: flex;
+    flex-direction: column; /* Stapelt die Karten innerhalb dieser Grid-Zelle untereinander */
+    gap: var(--gap-md);
+}
+
+.card {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid #e2e8f0;
+    /* transition: Steuert die flüssige Animation, wenn sich Styles ändern (z. B. beim Hovern) */
+    transition: var(--transition-fast);
+}
+
+/* :hover: Tritt in Kraft, wenn der Mauszeiger über der Karte schwebt */
+.card:hover {
+    /* transform: translateY: Verschiebt das Element leicht nach oben (3D-Effekt) */
+    transform: translateY(-5px);
+    /* Macht den Schatten beim Hovern tiefer, um das "Anheben" optisch zu verstärken */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    /* cursor: pointer: Ändert den Mauszeiger in eine Klick-Hand */
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition-fast);
+}
+
+.btn-primary { background: var(--primary-color); color: var(--white); }
+/* filter: brightness(): Macht die Farbe beim Hovern ganz einfach ohne neuen Farbcode 20% heller */
+.btn-primary:hover { filter: brightness(1.2); }
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: var(--white);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+}
+
+input[type="text"], select {
+    padding: 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    width: 100%;
+}
+
+/* :focus: Wird aktiv, wenn man in das Eingabefeld hineinklickt oder hineintabbt */
+input:focus {
+    /* outline: Erstellt einen modernen, barrierefreien Fokus-Ring um das Feld */
+    outline: 2px solid var(--primary-color);
+    /* outline-offset: Schafft etwas Abstand zwischen dem Eingabefeld und dem Fokus-Ring */
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   6. RESPONSIVENESS VIA MEDIA QUERIES
+   ========================================================================== */
+
+/* @media: Weist den Browser an, diese Stile NUR auszuführen, wenn die Bedingung zutrifft */
+@media (max-width: 768px) {
+    /* Wenn der Bildschirm schmaler als 768px ist (z.B. Tablets/Smartphones), greift dieser Code: */
+    .main-header nav {
+        /* Schaltet die Navigation von nebeneinander (row) auf untereinander (column) um */
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+.main-footer {
+    background: var(--secondary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 1.5rem;
+    /* margin-top: auto: Der finale Teil des Sticky Footer Tricks. Schiebt den Footer ganz nach unten */
+    margin-top: auto;
+}
+
+/* ==========================================================================
+   7. LAYOUT FÜR DIE FEATURES-SEITE
+   ========================================================================== */
+
+.features-main {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 3rem 5%;
+    flex-grow: 1;
+}
+
+.features-hero {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.features-hero h1 {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+/* Spezielles Grid für die Feature-Karten */
+.features-grid {
+    display: grid;
+    /* Erstellt Spalten, die mindestens 250px breit sind */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--gap-md);
+}
+
+.feature-card {
+    background: var(--white);
+    padding: 2.5rem 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid #e2e8f0;
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: var(--transition-fast);
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    /* Pulsierender Effekt beim Laden (siehe @keyframes pulse unten) */
+    animation: pulse 2s infinite ease-in-out;
+}
+
+/* ==========================================================================
+   8. MODERNES CSS-ANIMATIONS SYSTEM (@keyframes)
+   ========================================================================== */
+
+/* Animation 1: Sanftes Einblenden (Fade In) */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animation 2: Von unten nach oben hineinsliden (Slide Up) */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animation 3: Kontinuierliches Pulsieren für die Icons */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+/* ==========================================================================
+   9. ANIMATIONS-KLASSEN (ANWENDUNG AUF HTML-ELEMENTE)
+   ========================================================================== */
+
+.animate-fade-in {
+    /* animation: Name, Dauer, Kurve, sorgt dafür, dass das Element am Ende sichtbar bleibt (forwards) */
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.animate-slide-up {
+    animation: slideUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    /* Sichtbarkeit vor dem Animationsstart auf 0 setzen (verhindert Aufblitzen) */
+    opacity: 0; 
+    
+    /* Nutzt die im HTML definierte inline-variable (--delay), um die Karten nacheinander einzublenden */
+    animation-delay: calc(var(--delay) * 0.15s);
+}
+
+/* Barrierefreiheit: Schaltet Animationen komplett ab, wenn der Nutzer dies im Betriebssystem eingestellt hat */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-delay: -1ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        background-attachment: scroll !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0s !important;
+        transition-delay: 0s !important;
+    }
+}
+
+/* ==========================================================================
+   10. REINES CSS HAMBURGER-MENÜ (CHECKBOX-HACK) & LAYOUT
+   ========================================================================== */
+
+/* Die Checkbox selbst wird komplett ausgeblendet */
+.menu-checkbox {
+    display: none;
+}
+
+/* Das Hamburger-Icon ist auf grossen Bildschirmen standardmässig unsichtbar */
+.hamburger-button {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 1000; /* Liegt immer über dem Menü */
+}
+
+/* Die drei Querstriche des Hamburgers */
+.hamburger-line {
+    width: 100%;
+    height: 3px;
+    background-color: var(--secondary-color);
+    border-radius: 3px;
+    transition: var(--transition-fast); /* Ermöglicht die Verwandlung zum 'X' */
+}
+
+/* ==========================================================================
+   11. RESPONSIVE NAVIGATION (MOBILE FIRST / BREAKPOINT)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* Macht die Nav-Container-Box auf Smartphones flexibel */
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    /* Zeigt das Hamburger-Icon auf mobilen Geräten an */
+    .hamburger-button {
+        display: flex;
+    }
+
+    /* Das Menü wird mobil als Vollbild- oder Ausklapp-Overlays formatiert */
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        /* Fixiert das Menü über den gesamten Bildschirm */
+        position: fixed;
+        top: 0;
+        right: -100%; /* Startet unsichtbar ausserhalb des rechten Bildschirmrands */
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px); /* Moderner Milchglas-Effekt */
+        
+        gap: 2rem;
+        transition: right 0.4s cubic-bezier(0.77, 0.2, 0.05, 1);
+        z-index: 999;
+    }
+
+    .nav-links a {
+        font-size: 1.5rem; /* Grössere Links für Touch-Bedienung */
+    }
+
+    /* ==========================================================================
+       DIE CSS-MAGIE: WENN DIE CHECKBOX AKTIV (~ SELEKTOR) IST
+       ========================================================================== */
+    
+    /* Wenn die Checkbox angeklickt ist, schiebe das Menü ins Bild (right: 0) */
+    .menu-checkbox:checked ~ .nav-links {
+        right: 0;
+    }
+
+    /* ANIMATION DES HAMBURGER-ICONS ZUM EINEM "X" */
+    
+    /* Oberer Strich rotiert nach unten */
+    .menu-checkbox:checked ~ .hamburger-button .hamburger-line:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    /* Mittlerer Strich wird unsichtbar */
+    .menu-checkbox:checked ~ .hamburger-button .hamburger-line:nth-child(2) {
+        opacity: 0;
+    }
+
+    /* Unterer Strich rotiert nach oben */
+    .menu-checkbox:checked ~ .hamburger-button .hamburger-line:nth-cell(3), /* Fallback */
+    .menu-checkbox:checked ~ .hamburger-button .hamburger-line:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+}
+
+/* ==========================================================================
+   12. LAYOUT FÜR DIE KONTAKTSEITE
+   ========================================================================== */
+
+.contact-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    padding: 2rem;
+}
+
+.contact-card {
+    background: var(--white);
+    padding: 3rem;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+.contact-card h1 {
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+.contact-card p {
+    color: var(--text-color);
+    margin-bottom: 2rem;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-color);
+    border-radius: 8px;
+}
+
+.info-item span {
+    font-size: 1.5rem;
+}
